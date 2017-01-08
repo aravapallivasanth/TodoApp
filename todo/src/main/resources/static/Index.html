@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToDo List Website</title>
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.1/css/jquery.dataTables.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.1/js/jquery.dataTables.js"></script>
+       <script>
+			function displayDate() {
+   				 document.getElementById("demo").innerHTML = Date();
+			}
+	   </script>
+        
+        <style>
+			table {
+			    font-family: arial, sans-serif;
+			    border-collapse: collapse;
+			    width: 100%;
+			}
+			
+			td, th {
+			    border: 1px solid #dddddd;
+			    text-align: left;
+			    padding: 8px;
+			}
+			
+			tr:nth-child(even) {
+			    background-color: #dddddd;
+			}
+		</style>
+    </head>
+
+    <body>
+    <script>
+function displayDate() {
+    document.getElementById("demo").innerHTML = Date();
+}
+$(function() {
+$("#save").click( function()
+           {
+             alert('button clicked'); 
+             var id = $("#id").val();
+			 var priority = $("#priority").val();
+			 var todo = $("#todo").val();	           
+			
+				 			 
+			 jQuery.ajax({
+				url: 'http://localhost:8080/save',
+				type:"POST",
+				data: JSON.stringify({"id": id, "priority": priority, "todo": todo}),
+				dataType:"json",
+				contentType:"application/json; charset=utf-8",
+				success: function(data){
+				   alert(JSON.stringify(data));	
+				   document.getElementById("demo").innerHTML = JSON.stringify(data);
+				   $('#todoTable').DataTable( {
+				   		retrieve: true,
+				   		processing: true,
+    					paging: false,
+    					searching: false,
+						data: JSON.stringify(data),
+						render: function( data, type, full, meta ) {
+					        Utils.formatString(buttonTemplate, data)
+					    },
+						columns: [
+				            { title: "Id" },
+				            { title: "Priority" },
+				            { title: "Todo" }
+				        ]       
+				   } );				   
+				}
+			 })
+			 
+           }
+      );
+});	
+
+$(function() {
+$("#update").click( function()
+           {
+             alert('button clicked'); 
+             var id = $("#id").val();
+			 var priority = $("#priority").val();
+			 var todo = $("#todo").val();
+			 jQuery.ajax({
+				url: 'http://localhost:8080/updateTodoItem',
+				type:"POST",
+				data: JSON.stringify({"id": id, "priority": priority, "todo": todo}),
+				dataType:"json",
+				contentType:"application/json; charset=utf-8",
+				success: function(data){
+				   alert(JSON.stringify(data));	
+				   document.getElementById("demo").innerHTML = JSON.stringify(data);				   			   
+				}
+			 })			 
+           }
+      );
+});
+
+$(function() {
+$("#delete").click( function()
+           {
+             alert('button clicked'); 
+             var id = $("#id").val();			
+			 jQuery.ajax({
+				url: 'http://localhost:8080/deleteTodoItem?id='+id,
+				type:"DELETE",				
+				dataType:"json",
+				contentType:"application/json; charset=utf-8",
+				success: function(data){
+				   alert(JSON.stringify(data));	
+				   document.getElementById("demo").innerHTML = JSON.stringify(data);				   			   
+				}
+			 })			 
+           }
+      );
+});
+
+$(function() {
+$("#get").click( function()
+           {
+             alert('button clicked');            
+			 jQuery.ajax({
+				url: 'http://localhost:8080/getTodoList',
+				type:"GET",				
+				dataType:"json",
+				contentType:"application/json; charset=utf-8",
+				success: function(data){
+				   alert(JSON.stringify(data));	
+				   document.getElementById("demo").innerHTML = JSON.stringify(data);				   			   
+				}
+			 })			 
+           }
+      );
+});
+</script>
+    	
+  		Id: <input type="text" id="id">
+  		Priority: <input type="text" id="priority">
+  		Todo: <input type="text" id="todo">
+  		<button type="button" id="save">Save</button>
+  		<button type="button" id="update">Update</button>
+  		<button type="button" id="delete">Delete</button>
+  		<button type="button" id="get">Show All Todo Items</button>
+  		
+  		<p id="demo"></p>
+  		
+       <!-- <table id="todoTable" class="display" cellspacing="0" width="100%"> </table> -->
+         
+    </body>
+</html>
