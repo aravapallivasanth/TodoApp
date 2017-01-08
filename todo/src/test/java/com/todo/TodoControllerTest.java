@@ -13,6 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Arrays;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
@@ -24,6 +25,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.todo.util.Priority;
+
+/**
+ * This Junit class yet to be completed. Work is in progress.
+ * @author vasanth
+ *
+ */
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestConfig.class})
@@ -38,8 +45,9 @@ public class TodoControllerTest {
     //Add WebApplicationContext field here.
  
     //The setUp() method is omitted.
+    
  
-    @Test
+    @Ignore
     public void findAll_TodosFound_ShouldReturnFoundTodoEntries() throws Exception {
         ToDo first = new ToDo(1, Priority.High, "Pay credit card bill");
                 

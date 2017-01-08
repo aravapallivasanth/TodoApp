@@ -5,11 +5,6 @@
         <link rel="stylesheet" href="//cdn.datatables.net/1.10.1/css/jquery.dataTables.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="//cdn.datatables.net/1.10.1/js/jquery.dataTables.js"></script>
-       <script>
-			function displayDate() {
-   				 document.getElementById("demo").innerHTML = Date();
-			}
-	   </script>
         
         <style>
 			table {
@@ -32,13 +27,11 @@
 
     <body>
     <script>
-function displayDate() {
-    document.getElementById("demo").innerHTML = Date();
-}
+
 $(function() {
 $("#save").click( function()
            {
-             alert('button clicked'); 
+              
              var id = $("#id").val();
 			 var priority = $("#priority").val();
 			 var todo = $("#todo").val();	           
@@ -78,7 +71,7 @@ $("#save").click( function()
 $(function() {
 $("#update").click( function()
            {
-             alert('button clicked'); 
+              
              var id = $("#id").val();
 			 var priority = $("#priority").val();
 			 var todo = $("#todo").val();
@@ -100,7 +93,7 @@ $("#update").click( function()
 $(function() {
 $("#delete").click( function()
            {
-             alert('button clicked'); 
+             
              var id = $("#id").val();			
 			 jQuery.ajax({
 				url: 'http://localhost:8080/deleteTodoItem?id='+id,
@@ -119,7 +112,7 @@ $("#delete").click( function()
 $(function() {
 $("#get").click( function()
            {
-             alert('button clicked');            
+                        
 			 jQuery.ajax({
 				url: 'http://localhost:8080/getTodoList',
 				type:"GET",				

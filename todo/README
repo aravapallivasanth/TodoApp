@@ -1,0 +1,28 @@
+1. Download the "todo" project and import as maven project in Eclipse / IntelliJ IDE.
+2. Run the Application.java as normal java program.
+   By doing this, Spring Boot will take care to run the embedded tomcat and deploy "todo" application into tomcat.
+   We no need to do anything manually.
+3. Please hit the below URL in the browser
+
+   http://localhost:8080/
+
+   Then, automatically you will see the index.html page.
+4. Now, Please check the User story acceptance criteria by testing this application with different input criteria.
+
+5. Please use the below REST End Points if you want to test REST services from Postman chrome client or SOAP UI Pro.
+
+http://localhost:8080/save
+
+http://localhost:8080/getTodoList
+
+http://localhost:8080/updateTodoItem
+
+http://localhost:8080/deleteTodoListItem?id=1
+
+Sample JSON to give the input in the postman:
+---------------------------------------------
+{
+	"id": 1,
+	"priority": "High",
+	"todo": "Hello"
+} 
